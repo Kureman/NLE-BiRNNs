@@ -202,7 +202,7 @@ def store_prediction(lex, dic_inv, pred_dev, gold_dev):
 #==================================================
 length = 0
 lengths = []
-data = open('').read()
+data = open('./data/....txt').read()
 data = data.split('\n\n')
 data = [item.split('\n') for item in data]
 data = [[i.split('\t') for i in item] for item in data]
@@ -231,10 +231,10 @@ embedding_dim = 100
 if pretrained:
     if fasttext:
         print ('using fastText embeddings')
-        nmodel = FastText.load('')
+        nmodel = FastText.load('./emb/....fasttext')
     else:
         print ('using Word2Vec embeddings')
-        nmodel = Word2Vec.load('')
+        nmodel = Word2Vec.load('./emb/....word2vec')
 
     word_emb = nmodel.wv.vectors
     idxs2w_list = nmodel.wv.index2word
