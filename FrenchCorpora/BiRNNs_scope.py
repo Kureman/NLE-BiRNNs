@@ -67,7 +67,6 @@ class MoreMetrics(Callback):
  
     def on_epoch_end(self, epoch, logs={}):
         global best_f1
-        global crf
         val_predict = model.predict([X_valid, X_pos_valid, X_cues_valid])
         val_targ = Y_valid
         valid_pre, valid_rec, valid_f1 = get_eval_epoch(val_predict,val_targ)
