@@ -227,10 +227,6 @@ test_seq_len = []
 for seq in test_words:
     test_seq_len.append(len(seq))
 
-print (len(train_words), "negation instances in the train set")
-print (len(valid_words), "negation instances in the validation set")
-print (len(test_words), "negation instances in the test set")
-
 words_x = train_words+valid_words+test_words
 lemmas_x = train_lemmas+valid_lemmas+test_lemmas
 pos_x = train_pos+valid_pos+test_pos
