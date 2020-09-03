@@ -186,14 +186,15 @@ def get_index(w, _dict, voc_dim):
 # ---------------------- storing labeling results -------------------
 def store_prediction(lex, dic_inv, pred_dev, gold_dev):
     print ("Storing labelling results for dev or test set...")
-    with codecs.open('best_pred.txt','wb','utf8') as store_pred:
+    with codecs.open('scope_best_pred.txt','wb','utf8') as store_pred:
         for s, y_sys, y_hat in zip(lex, pred_dev, gold_dev):
             s = [dic_inv.get(word) for word in s]
             assert len(s)==len(y_sys)==len(y_hat)
             for _word,_sys,gold in zip(s,y_sys,y_hat):
                 _p = list(_sys).index(_sys.max())
                 _g = 0 if list(gold)==[1,0] else 1
-                store_pred.write("%s\t%s\t%s\n" % (_word,_g,_p))
+                if _word != "<PAD>":
+                    store_pred.write("%s\t%s\t%s\n" % (_word,_g,_p))
             store_pred.write("\n")
 
 #==================================================
