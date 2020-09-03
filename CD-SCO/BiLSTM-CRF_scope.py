@@ -322,12 +322,15 @@ def pad_embeddings(w2v_we,emb_size):
 def get_index(w, _dict, voc_dim):
     return _dict[w] if w in _dict else voc_dim - 2
 
-# ---------------------- storing labeling results -------------------
+ # ---------------------- storing labeling results -------------------
 def store_prediction(lex, dic_inv, pred_dev, gold_dev):
     print ("Storing labelling results for dev or test set...")
-    with codecs.open('bilstm_crf_best_pred.txt','wb','utf8') as store_pred:
-        for s, y_sys, y_hat in zip(lex, pred_dev, gold_dev):
-            s = [dic_inv.get(word) for word in s]
+    with codecs.open('scope_bilstm_crf_fT.txt','wb','utf8') as store_pred:
+        for s, y_sys, y_hat, seq_len in zip(lex, pred_dev, gold_dev, test_seq_len):
+            s = [dic_inv['idxs2w'][w] if w in dic_inv['idxs2w'] else '<UNK>' for w in s]
+            s = s[0:seq_len]
+            y_sys = y_sys[0:seq_len]
+            y_hat = y_hat[0:seq_len]
             assert len(s)==len(y_sys)==len(y_hat)
             for _word,_sys,gold in zip(s,y_sys,y_hat):
                 _p = list(_sys).index(_sys.max())
@@ -360,6 +363,10 @@ train_words, train_pos, train_cues, train_labels = get_negation_instances(traini
 valid_words, valid_pos, valid_cues, valid_labels = get_negation_instances(validation_data)
 test_words, test_pos, test_cues, test_labels = get_negation_instances(test_data)
 lengths.append(length)
+
+test_seq_len = []
+for seq in test_words:
+    test_seq_len.append(len(seq))
 
 print (len(train_words), "negation instances in the train set")
 print (len(valid_words), "negation instances in the validation set")
