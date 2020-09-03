@@ -328,7 +328,7 @@ inputs_pos = Input(shape=(sequence_length,), dtype='int32')
 inputs_cue = Input(shape=(sequence_length,), dtype='int32')
 
 if pretrained:
-    w_emb = Embedding(vocabulary_size+1, embedding_dim, weights=[embedding_matrix], embeddings_initializer=keras.initializers.Constant(embedding_matrix), input_length=sequence_length, trainable=True)(inputs_w)
+    w_emb = Embedding(vocabulary_size+1, embedding_dim, weights=[embedding_matrix], input_length=sequence_length, trainable=True)(inputs_w)
 else:
     w_emb = Embedding(vocabulary_size+1, embedding_dim, input_length=sequence_length, embeddings_initializer=embeddings_initializer, trainable=True)(inputs_w)
 
