@@ -472,7 +472,7 @@ inputs_w = Input(shape=(sequence_length,), dtype='int32')
 inputs_pos = Input(shape=(sequence_length,), dtype='int32')
 inputs_cue = Input(shape=(sequence_length,), dtype='int32')
 
-w_emb = Embedding(vocabulary_size+1, embedding_dim, weights=[embedding_matrix], embeddings_initializer=keras.initializers.Constant(embedding_matrix), input_length=sequence_length, trainable=True)(inputs_w)
+w_emb = Embedding(vocabulary_size+1, embedding_dim, weights=[embedding_matrix], input_length=sequence_length, trainable=True)(inputs_w)
 p_emb = Embedding(tag_voc_size+1, embedding_dim, embeddings_initializer=embeddings_initializer, input_length=sequence_length, trainable=True)(inputs_pos)
 c_emb = Embedding(2, embedding_dim, input_length=sequence_length, embeddings_initializer=embeddings_initializer, trainable=True)(inputs_cue)
 
