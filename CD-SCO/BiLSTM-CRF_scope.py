@@ -448,7 +448,7 @@ Y_valid = xlabels[983:1156]
 X_test = xwords[1156:len(xwords)]
 X_pos_test = xpos[1156:len(xwords)]
 X_cues_test = xcues[1156:len(xwords)]
-Y_test = xlabels[1156:len(xlabels)]
+Y_test = xlabels[1156:len(xwords)]
 
 #==================================================
 # ---------------------- Parameters section -------------------
