@@ -70,7 +70,7 @@ class MoreMetrics(Callback):
         val_predict = model.predict([X_valid, X_pos_valid, X_cues_valid])
         val_targ = Y_valid
         valid_pre, valid_rec, valid_f1 = get_eval_epoch(val_predict,val_targ)
-        print ("F1 score on validation set", valid_pre, valid_rec, valid_f1)
+        print ("Precision/recall/F1 score on validation set", valid_pre, valid_rec, valid_f1)
         if valid_f1 > best_f1:
             best_f1 = valid_f1
             if lstm:
