@@ -263,8 +263,8 @@ for i in range(len(nmodel.wv.vocab)):
         
 dic_inv = {'idxs2w':pre_idxs2w}
 
-
-#Preparing lemma without pre-trained embeddings
+#==================================================
+#Preparing lemmas embeddings
 # ==================================================
 # create a new Tokenizer
 Lemmatokenizer = kpt.Tokenizer(lower=False)
@@ -344,9 +344,7 @@ inputs_w = Input(shape=(sequence_length,), dtype='int32')
 inputs_l = Input(shape=(sequence_length,), dtype='int32')
 inputs_pos = Input(shape=(sequence_length,), dtype='int32')
 
-# ~ w_emb = Embedding(vocabulary_size+1, embedding_dim, input_length=sequence_length, weights=[embedding_matrix], trainable=True)(inputs_w)
-w_emb = Embedding(vocabulary_size+1, embedding_dim, input_length=sequence_length, embeddings_initializer=embeddings_initializer, trainable=True)(inputs_w)
-
+w_emb = Embedding(vocabulary_size+1, embedding_dim, input_length=sequence_length, weights=[embedding_matrix], trainable=True)(inputs_w)
 l_emb = Embedding(lemma_vocabulary_size+1, embedding_dim, input_length=sequence_length, embeddings_initializer=embeddings_initializer, trainable=True)(inputs_l)
 p_emb = Embedding(tag_voc_size+1, embedding_dim, input_length=sequence_length, embeddings_initializer=embeddings_initializer, trainable=True)(inputs_pos)
 
