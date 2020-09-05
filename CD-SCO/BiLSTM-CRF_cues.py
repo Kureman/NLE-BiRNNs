@@ -330,7 +330,7 @@ hidden_dims = 400
 embeddings_initializer = keras.initializers.RandomUniform(minval=-1.0, maxval=1.0, seed=42)
 
 # ~ # Training parameters
-num_epochs = 20
+num_epochs = 50
 batch_size = 32
 best_f1 = 0.0
 
