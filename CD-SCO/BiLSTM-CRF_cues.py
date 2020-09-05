@@ -223,6 +223,8 @@ valid_words, valid_lemmas, valid_pos, valid_labels = get_negation_instances(vali
 test_words, test_lemmas, test_pos, test_labels = get_negation_instances(test_data)
 lengths.append(length)
 
+valid_set_len = len(train_words)+len(valid_words)
+
 test_seq_len = []
 for seq in test_words:
     test_seq_len.append(len(seq))
@@ -303,22 +305,22 @@ xlabels = np.array(labels_x, dtype='int32')
 sequence_length = xwords.shape[1]
 
 # CD-SCO train set
-X_train =        xwords[0:3644]
-X_lemmas_train = xlemmas[0:3644]
-X_pos_train =      xpos[0:3644]
-Y_train =       xlabels[0:3644]
+X_train =        xwords[0:len(train_words)]
+X_lemmas_train = xlemmas[0:len(train_words)]
+X_pos_train =      xpos[0:len(train_words)]
+Y_train =       xlabels[0:len(train_words)]
 
 # CD-SCO validation set
-X_valid =        xwords[3644:4431]
-X_lemmas_valid = xlemmas[3644:4431]
-X_pos_valid =      xpos[3644:4431]
-Y_valid =       xlabels[3644:4431]
+X_valid =        xwords[len(train_words):valid_set_len]
+X_lemmas_valid = xlemmas[len(train_words):valid_set_len]
+X_pos_valid =      xpos[len(train_words):valid_set_len]
+Y_valid =       xlabels[len(train_words):valid_set_len]
 
 # CD-SCO test set
-X_test =        xwords[4431:len(xwords)]
-X_lemmas_test = xlemmas[4431:len(xwords)]
-X_pos_test =      xpos[4431:len(xwords)]
-Y_test =       xlabels[4431:len(xwords)]
+X_test =        xwords[valid_set_len:len(xwords)]
+X_lemmas_test = xlemmas[valid_set_len:len(xwords)]
+X_pos_test =      xpos[valid_set_len:len(xwords)]
+Y_test =       xlabels[valid_set_len:len(xwords)]
 
 #==================================================
 # ---------------------- Parameters section -------------------
